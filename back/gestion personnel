@@ -1,0 +1,78 @@
+Cahier des Charges - Gestion d'Utilisateurs avec Node.js, Express et MySQL
+===========================================================================
+
+1. Contexte
+-----------
+Ce projet vise à développer une application web simple pour gérer des utilisateurs (inscription, authentification, CRUD).
+
+2. Objectifs
+------------
+- Permettre aux utilisateurs de s'inscrire et de se connecter.
+- Offrir une interface pour gérer les utilisateurs (lister, modifier, supprimer).
+- Fournir une API RESTful pour interagir avec le frontend (ou une interface web basique).
+
+3. Fonctionnalités
+-------------------
+
++-----------------------------+---------------------------------------------------------------------------------+--------------+
+| Fonctionnalité              | Description                                                                     | Priorité     |
++-----------------------------+---------------------------------------------------------------------------------+--------------+
+| Inscription                 | Permettre à un utilisateur de créer un compte (nom, email, mot de passe).      | Haute        |
+| Connexion                   | Authentifier un utilisateur avec email et mot de passe.                        | Haute        |
+| Déconnexion                 | Permettre à un utilisateur de se déconnecter.                                   | Moyenne      |
+| Lister les utilisateurs     | Afficher tous les utilisateurs (réservé à l'admin).                             | Moyenne      |
+| Modifier un utilisateur     | Permettre à un utilisateur de modifier ses informations.                       | Moyenne      |
+| Supprimer un utilisateur    | Permettre à un utilisateur de supprimer son compte.                             | Basse        |
+| Rôles (admin/utilisateur)   | Distinguer les droits entre admin et utilisateur standard.                      | Haute        |
++-----------------------------+---------------------------------------------------------------------------------+--------------+
+
+4. Spécifications Techniques
+---------------------------
+
+4.1. Backend
+------------
+- Langage : Node.js (version 18+)
+- Framework : Express
+- Base de données : MySQL (version 8+)
+- Routes API :
+  - POST /register : Inscription
+  - POST /login : Connexion
+  - GET /users : Lister les utilisateurs (admin)
+  - GET /users/:id : Afficher un utilisateur
+  - PUT /users/:id : Modifier un utilisateur
+  - DELETE /users/:id : Supprimer un utilisateur
+
+4.2. Base de Données
+--------------------
+Table `users` :
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(50) NOT NULL,
+  prenom VARCHAR(50) NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  role ENUM('user', 'admin') DEFAULT 'user',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+4.3. Frontend
+------------------------
+- Pages :
+  - Page d'accueil
+  - Page d'inscription
+  - Page de connexion
+  - Tableau de bord utilisateur
+  - Interface admin (liste des utilisateurs)
+
+5. Livrables
+-----------
+- Code source complet (backend + frontend si applicable).
+- Script SQL pour créer la base de données.
+- Documentation d'installation et d'utilisation.
+- Exemples de requêtes API (Postman).
+- Rendu GIT
+
+7. Contraintes
+--------------
+- Code commenté et documenté.
+- Compatibilité avec les dernières versions des technologies utilisées.

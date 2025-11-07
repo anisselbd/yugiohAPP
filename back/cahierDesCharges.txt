@@ -1,0 +1,112 @@
+Cahier des charges fonctionnel 
+Projet : Yu-Gi-Oh! Manager 
+1. Présentation du projet 
+1.1 Contexte 
+L’entreprise YugiVerse Entertainment, spécialisée dans la distribution et la collection de 
+cartes à jouer, souhaite développer une plateforme web dédiée à la gestion, la visualisation et 
+la collection des cartes Yu-Gi-Oh!. 
+Cette application a pour vocation de devenir une référence francophone pour les 
+collectionneurs et joueurs souhaitant : 
+• Consulter des informations détaillées sur chaque carte, 
+• Gérer leur collection personnelle, 
+• Créer, modifier et partager leurs decks, 
+• Comparer des cartes et suivre leur disponibilité sur le marché. 
+1.2 Objectif général 
+Créer une application web moderne, responsive et évolutive, permettant à un utilisateur 
+inscrit de : 
+• Consulter la base complète des cartes Yu-Gi-Oh!, 
+• Gérer sa propre collection et ses decks, 
+• Rechercher, filtrer et trier les cartes selon différents critères, 
+• Accéder à des fiches détaillées, avec visuel et statistiques, 
+• Éventuellement interagir avec d’autres collectionneurs. 
+2. Objectifs du projet 
+Objectifs principaux 
+• Fournir une interface intuitive et ergonomique pour naviguer dans l’univers Yu-Gi
+Oh!. 
+• Mettre à disposition une base de données complète, fiable et structurée des cartes. 
+• Permettre à chaque utilisateur de gérer son compte et ses cartes personnelles. 
+• Offrir une fonction de création de decks avec gestion des quantités et règles de 
+composition. 
+• Garantir la sécurité et la pérennité des données utilisateurs. 
+Objectifs secondaires 
+• Mettre en avant les raretés et éditions des cartes. 
+• Proposer des outils d’analyse et de comparaison. 
+• Intégrer des visuels officiels des cartes. 
+• (Évolution) Ajouter un système d’échanges entre utilisateurs. 
+3. Périmètre fonctionnel 
+3.1 Gestion des cartes 
+L’application doit permettre : 
+• La consultation de toutes les cartes disponibles. 
+• L’affichage d’une fiche détaillée pour chaque carte : 
+o Nom de la carte 
+o Type (Monstre / Magie / Piège) 
+o Description 
+o ATK / DEF / Niveau 
+o Type de monstre / attribut 
+o Rareté 
+o Édition 
+o Image officielle 
+• La recherche multicritères (nom, type, rareté, édition, attaque, défense...). 
+• Le tri dynamique (ex : par ATK décroissante, rareté, etc.). 
+3.2 Gestion des utilisateurs 
+L’utilisateur pourra : 
+• Créer un compte personnel avec pseudo, email et mot de passe. 
+• Se connecter à son espace personnel (via authentification sécurisée). 
+• Modifier ses informations personnelles. 
+• Supprimer son compte. 
+3.3 Gestion de la collection personnelle 
+Chaque utilisateur peut : 
+• Ajouter une carte à sa collection personnelle. 
+• Indiquer le nombre d’exemplaires possédés. 
+• Consulter et filtrer sa collection. 
+• Supprimer ou modifier une carte de sa collection. 
+3.4 Gestion des decks 
+Un utilisateur peut : 
+• Créer un nouveau deck avec un nom et une description. 
+• Ajouter des cartes de sa collection à un deck, avec la quantité souhaitée. 
+• Consulter la composition d’un deck. 
+• Modifier ou supprimer un deck existant. 
+Chaque deck est lié à un utilisateur unique. 
+Une carte peut apparaître dans plusieurs decks différents. 
+3.5 Gestion des éditions et raretés 
+• Les cartes sont classées selon leur édition (ex. Legend of Blue Eyes White Dragon). 
+• Chaque carte a une rareté : Common, Rare, Super Rare, Ultra Rare, Secret Rare, etc. 
+• Le système doit permettre d’ajouter de nouvelles éditions ou raretés sans impacter la 
+base existante. 
+3.6 Fonctions avancées (évolutions prévues) 
+• Comparateur de cartes : visualisation côte à côte. 
+• Commentaires ou notes des utilisateurs sur une carte. 
+• Wishlist : liste de cartes que l’utilisateur souhaite obtenir. 
+• API publique (mode consultation) pour applications tierces. 
+• Système d’échange entre utilisateurs (phase 2 du projet). 
+4. Contraintes techniques 
+Élément 
+Base de données 
+Exigence 
+MySQL / MariaDB 
+Langage backend Node.js (Express) ou Symfony 
+Frontend 
+React.js / Vue.js 
+Sécurité 
+Authentification JWT / HTTPS obligatoire 
+Stockage des images Liens externes (API officielle) ou dossier dédié 
+Architecture 
+RESTful API + Front séparé 
+Normes 
+Performance 
+Respect des bonnes pratiques MVC et de la normalisation SQL 
+Requêtes optimisées, pagination pour la recherche 
+Responsive design Compatible desktop / mobile / tablette 
+Langue 
+Français (version anglaise envisagée ultérieurement) 
+6. Sécurité & confidentialité 
+• Chiffrement des mots de passe (bcrypt ou argon2). 
+• Authentification via JSON Web Token (JWT). 
+• Aucune donnée sensible (mot de passe en clair, etc.) ne doit être stockée. 
+• Conformité RGPD : possibilité pour l’utilisateur de supprimer son compte et ses 
+données. 
+7. Performances & qualité 
+• Les recherches doivent être rapides (pagination côté serveur). 
+• Le design doit être clair, sobre et adapté à la navigation mobile. 
+• Respect des standards W3C et accessibilité de niveau AA. 
+• Taux de disponibilité cible : 99 %.
