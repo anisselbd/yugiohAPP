@@ -1,8 +1,9 @@
+// load environment variables from .env file
+import 'dotenv/config.js';
+
 // importation du module express
 import express from 'express';
 // importation de la connexion à la base de données
-import connexion from './config/bdd.js';
-// importation des routes utilisateurs
 import utilisateurRoutes from './Routes/utilisateurRoute.js';
 import carteRoutes from './Routes/carteRoute.js';
 import collectionRoutes from './Routes/collectionRoute.js';
@@ -39,27 +40,21 @@ app.get('/', (req, res) => {
     res.send('Hello pierre');
 });
 
-// définition de la route pour l'URL /users
-// mauvaise méthode
-app.get('/users', async (req, res) => {
-    try{
-        // exécution de la requête SQL pour récupérer tous les utilisateurs
-    const [utilisateurs] = await connexion.query("SELECT * FROM utilisateur");
-    // envoi de la réponse avec les utilisateurs récupérés
-    res.status(200).json({message: "Utilisateurs récupérés avec succès", utilisateurs});
-    }catch(error){
-        // si une erreur survient, on l'affiche dans la console
-        console.error("Erreur lors de la récupération des utilisateurs:", error);
-    }
-
-});
-
 app.get('/cards/yugioh', (req, res) => {
     res.send('Voici les cartes Yu-Gi-Oh!');
 });
 
-// démarrage du serveur sur le port 3000
-app.listen(3000, () => {
-    // message dans la console lorsque le serveur est démarré
-    console.log('Serveur démarré sur le port 3000 🟢​');
+// Middleware de gestion des erreurs global
+app.use((err, req, res, next) => {
+    console.error(err.stack); // Log l'erreur pour le débogage côté serveur
+    // Envoie une réponse d'erreur générique au client
+    res.status(500).json({ message: "Une erreur interne du serveur est survenue." });
+});
+
+// Définition du port d'écoute, utilise la variable d'environnement PORT ou 3000 par défaut
+const PORT = process.env.PORT || 3000;
+
+// Démarrage du serveur
+app.listen(PORT, () => {
+    console.log(`Serveur démarré sur le port ${PORT} 🟢​`);
 });

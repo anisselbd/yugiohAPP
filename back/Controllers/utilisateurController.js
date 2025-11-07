@@ -23,7 +23,7 @@ export const getInfoUtilisateur = async (req, res) => {
         const infoUtilisateur = await utilisateurModel.getInfoUtilisateur();
         res.status(200).json(infoUtilisateur);     
     } catch (error) {
-        console.error("une erreur est survenue", error);
+        res.status(500).json({ message: "Erreur lors de la récupération des informations utilisateur.", error: error.message }); // Toujours envoyer une réponse
     }
 };
 
@@ -35,7 +35,7 @@ export const getUtilisateurById = async (req, res) => {
         const utilisateurById = await utilisateurModel.getUtilisateurById(id);
         res.status(200).json(utilisateurById);
     } catch (error) {
-        console.error("une erreur est survenue", error);
+        res.status(500).json({ message: "Erreur lors de la récupération de l'utilisateur par ID.", error: error.message }); // Toujours envoyer une réponse
     }
 };
 
@@ -51,9 +51,8 @@ export const addUtilisateur = async (req,res) => {
 // appel du modèle pour ajouter l'utilisateur avec le mot de passe haché
         const utilisateur = await utilisateurModel.addUtilisateur(nom, prenom, email, mdpHash, pseudo);
         res.status(201).json({message: "utilisateur créé", utilisateur});
-    } catch (error) {
-        res.status(500);
-        console.error(error);
+    } catch (error) { // Gestion des erreurs
+        res.status(500).json({ message: "Erreur lors de la création de l'utilisateur.", error: error.message }); // Toujours envoyer une réponse
     }
 };
 
@@ -79,9 +78,8 @@ export const updateUtilisateur = async (req,res) => {
         res.status(200).json({message: "utilisateur modifié", updatedUtilisateur});
         }
     } catch (error) {
-        // gestion des erreurs renvoi une réponse 500
-        res.status(500);
-        console.error(error);
+        // Gestion des erreurs renvoi une réponse 500
+        res.status(500).json({ message: "Erreur lors de la mise à jour de l'utilisateur.", error: error.message }); // Toujours envoyer une réponse
     }
 };
 
@@ -101,7 +99,7 @@ export const deleteUtilisateur = async (req, res) => {
             res.status(200).json({message: "utilisateur supprimé", deletedUtilisateur});
         }
         
-    } catch (error) {
-        console.error(error);
+    } catch (error) { // Gestion des erreurs
+        res.status(500).json({ message: "Erreur lors de la suppression de l'utilisateur.", error: error.message }); // Toujours envoyer une réponse
     }
 }
